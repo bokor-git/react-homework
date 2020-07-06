@@ -1,0 +1,83 @@
+
+.messenger {
+    display: flex;
+    height: fit-content;
+    background: #eeeef1;
+    max-width: 100%;
+}
+
+.new_message {
+    padding: 10px;
+    border-top: 1px solid #eeeef1;
+    bottom: 0;
+    height: fit-content;
+    max-width: 100%;
+}
+
+.new_message input {
+    flex: 1;
+    border: none;
+    font-size: 14px;
+    height: 40px;
+    width: 490px;
+}
+
+.user_photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 20px;
+}
+
+.message_list {
+    width: 600px;
+    background-color: honeydew;
+
+}
+
+.message_item {
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 90%;
+    padding: 5px;
+    width: fit-content;
+    margin: 10px;
+    background: #007aff;
+    color: #fff;
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+}
+
+.message_date {
+    align-self: flex-end;
+    font-size: 10px;
+    color: black;
+    margin-right: 20px;
+    position: initial;
+    left: 0;
+}
+
+.message_container {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.send_button {
+    width: 80px;
+    height: 40px;
+    color: black;
+    background-color: #007aff;
+    border-radius: 10px;
+}
+
+.name {
+    font-size: 16px;
+    background: none;
+    color: darkviolet;
+}
