@@ -22,7 +22,7 @@ export function Input() {
             addNewMassage()
         }
     }
-    return <div>
+    return <div className="group">
         <input onChange={e => setNewMessageTitle(e.currentTarget.value)} onKeyPress={onEnterPress} type="text"
                value={newMessageTitle}
                placeholder="Enter your name"/>
