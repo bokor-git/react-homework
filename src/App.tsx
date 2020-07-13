@@ -5,9 +5,12 @@ import {TaskList} from "./TaskList";
 import {Input} from "./Input";
 import {MyInput} from "./common/MyInput";
 import {MyButton} from "./common/MyButton";
+import {MyCheckbox} from "./common/MyCheckbox";
 
 function App() {
     let [value, setValue] = useState<string>("")
+    let [checked, setChecked] = useState<boolean>(true)
+    const onChangeCheckbox = (checked:boolean)=> setChecked(checked)
     const onChange = (e: string) => setValue(e)
     const onEnterPress = (e: string) => {
         alert(e)
@@ -22,6 +25,7 @@ function App() {
             <MyInput error={false} value={value} onChange={onChange} placeholder={"Name"} onEnterPress={onEnterPress}/>
             {/*<div>{value?.toUpperCase().split("").reverse()}</div>*/}
             <MyButton disabled={false} text={"Send"} onClick={onClick}/>
+            <MyCheckbox onClick={onChangeCheckbox} checked={checked} text={"Custom checkbox"}/>
         </div>
     );
 }
