@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import style from "./Messenger.module.css"
 
+
 export function MessageList() {
 
     let initState = [
@@ -63,12 +64,14 @@ export function MessageList() {
             addNewMassage()
         }
     }
+
     return <div className={style.message_list}>
         {message.map((m) => <MassageItem message={m}/>)}
         <div className={style.new_message}>
             <input onChange={e => setNewMessageTitle(e.currentTarget.value)} onKeyPress={onEnterPress} type="text"
                    value={newMessageTitle}
                    placeholder="Enter your message"/>
+
             <button className={style.send_button} onClick={addNewMassage}>SEND</button>
         </div>
     </div>

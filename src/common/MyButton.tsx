@@ -3,8 +3,8 @@ import "./button.scss"
 
 type MyButtonType = {
     onClick: () =>void
-    text :string
-    disabled:boolean
+    text? :string
+    disabled?:boolean
 }
 
 export function MyButton({onClick, text, disabled}: MyButtonType) {
