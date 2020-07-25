@@ -8,10 +8,12 @@ import {MyButton} from "./common/MyButton";
 import {MyCheckbox} from "./common/MyCheckbox";
 import {HashRouter, Route, Switch} from "react-router-dom";
 import {Menu} from "./Menu";
+import {EditableSpan} from "./common/EditableSpan";
 
 function App() {
-    let [value, setValue] = useState<string>("")
+    let [value, setValue] = useState<string>("Editable span example")
     let [checked, setChecked] = useState<boolean>(true)
+    const setSpanValue = (value:string)=>setValue(value)
     const onChangeCheckbox = (checked: boolean) => setChecked(checked)
     const onChange = (e: string) => setValue(e)
     const onEnterPress = (e: string) => {
@@ -19,6 +21,20 @@ function App() {
         setValue("")
     }
     const onClick = () => alert("done")
+
+
+     function saveState<T> (key: string, state: T) {
+        const stateAsString = JSON.stringify(state);
+        localStorage.setItem(key, stateAsString)
+    }
+
+     function restoreState<T>(key: string, defaultState: T) {
+        const stateAsString = localStorage.getItem(key);
+        if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
+        return defaultState;
+    }
+
+
     return (
         <HashRouter>
             <Menu/>
@@ -37,7 +53,14 @@ function App() {
                         <MyCheckbox onClick={onChangeCheckbox} checked={checked} text={"Custom checkbox"}/>
                         <MyButton disabled={false} text={"Send"} onClick={onClick}/>
                     </>)}/>
-                    <Route path="/Junior/" render={() => (<h1>Will be soon...</h1>)}/>
+                    <Route path="/Junior/" render={() => (<>
+                        <h1>Task 6</h1>
+                        <EditableSpan onChange={setSpanValue} value={value}/>
+                        <div style={{display:"flex"}}>
+                            <MyButton onClick={()=>saveState<string>("spanValue",value)} text={"Save state"}/>
+                            <MyButton onClick={()=>{setValue(restoreState<string>("spanValue",value))}} text={"Restore state"}/>
+                        </div>
+                        </>)}/>
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
 
                 </Switch>
@@ -46,5 +69,5 @@ function App() {
     );
 }
 
-export default App;
 
+export default App;

@@ -3,7 +3,7 @@ import "./button.scss"
 
 type MyButtonType = {
     onClick: () =>void
-    text? :string
+    text :string
     disabled?:boolean
 }
 
