@@ -9,11 +9,13 @@ import {MyCheckbox} from "./common/MyCheckbox";
 import {HashRouter, Route, Switch} from "react-router-dom";
 import {Menu} from "./Menu";
 import {EditableSpan} from "./common/EditableSpan";
+import {Select} from "./common/Select";
+import {Radio} from "./common/Radio";
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
     let [checked, setChecked] = useState<boolean>(true)
-    const setSpanValue = (value:string)=>setValue(value)
+    const setSpanValue = (value: string) => setValue(value)
     const onChangeCheckbox = (checked: boolean) => setChecked(checked)
     const onChange = (e: string) => setValue(e)
     const onEnterPress = (e: string) => {
@@ -23,18 +25,24 @@ function App() {
     const onClick = () => alert("done")
 
 
-     function saveState<T> (key: string, state: T) {
+    function saveState<T>(key: string, state: T) {
         const stateAsString = JSON.stringify(state);
         localStorage.setItem(key, stateAsString)
     }
 
-     function restoreState<T>(key: string, defaultState: T) {
+    function restoreState<T>(key: string, defaultState: T) {
         const stateAsString = localStorage.getItem(key);
         if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
         return defaultState;
     }
 
+    const options = ["1 year", "4 year", "12 year", "15 year", "16 year", "20 year"]
+    let [selected, setSelected] = useState<string>("Select please...")
+    const onChangeSelect = (selectedValue: string) => setSelected(selectedValue)
+    let radioState: Array<string> = ["Trainee", "Junior", "Middle", "Senior"]
 
+    let [radioValue, setRadioValue] = useState<string>(" ")
+    const onRadioChange = (newRadioValue: string) => setRadioValue(newRadioValue)
     return (
         <HashRouter>
             <Menu/>
@@ -56,11 +64,17 @@ function App() {
                     <Route path="/Junior/" render={() => (<>
                         <h1>Task 6</h1>
                         <EditableSpan onChange={setSpanValue} value={value}/>
-                        <div style={{display:"flex"}}>
-                            <MyButton onClick={()=>saveState<string>("spanValue",value)} text={"Save state"}/>
-                            <MyButton onClick={()=>{setValue(restoreState<string>("spanValue",value))}} text={"Restore state"}/>
+                        <div style={{display: "flex"}}>
+                            <MyButton onClick={() => saveState<string>("spanValue", value)} text={"Save state"}/>
+                            <MyButton onClick={() => {
+                                setValue(restoreState<string>("spanValue", value))
+                            }} text={"Restore state"}/>
                         </div>
-                        </>)}/>
+                        <h1>Task 7</h1>
+                        <div><Select options={options} size={1} value={selected} onChange={onChangeSelect}/></div>
+                        <Radio name={"Health"} radio={radioState} onChange={onRadioChange}/>
+                        Current radio value:<b>{radioValue}</b>
+                    </>)}/>
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
 
                 </Switch>
