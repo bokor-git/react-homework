@@ -11,6 +11,7 @@ import {Menu} from "./Menu";
 import {EditableSpan} from "./common/EditableSpan";
 import {Select} from "./common/Select";
 import {Radio} from "./common/Radio";
+import {ReducersTask} from "./ReducersTask";
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
@@ -74,6 +75,8 @@ function App() {
                         <div><Select options={options} size={1} value={selected} onChange={onChangeSelect}/></div>
                         <Radio name={"Health"} radio={radioState} onChange={onRadioChange}/>
                         Current radio value:<b>{radioValue}</b>
+                        <h1>Task 8</h1>
+                       <ReducersTask/>
                     </>)}/>
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
 
