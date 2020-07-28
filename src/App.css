@@ -54,3 +54,25 @@ ul li ul li {
 ul li:hover ul li {
     display: block;
 }
+
+.date {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+    font-size: 20px;
+    position: relative; /* Относительное позиционирование */
+}
+.date:hover::after {
+    font-size: 12px;
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; right: 0; bottom: 20px; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
+    color: #fff; /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    padding: 5px 20px; /* Поля */
+    margin: 5px;
+    border: 1px solid #333; /* Параметры рамки */
+}

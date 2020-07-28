@@ -12,6 +12,9 @@ import {EditableSpan} from "./common/EditableSpan";
 import {Select} from "./common/Select";
 import {Radio} from "./common/Radio";
 import {ReducersTask} from "./ReducersTask";
+import {DateTask} from "./DateTask";
+
+
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
@@ -36,7 +39,6 @@ function App() {
         if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
         return defaultState;
     }
-
     const options = ["1 year", "4 year", "12 year", "15 year", "16 year", "20 year"]
     let [selected, setSelected] = useState<string>("Select please...")
     const onChangeSelect = (selectedValue: string) => setSelected(selectedValue)
@@ -44,42 +46,45 @@ function App() {
 
     let [radioValue, setRadioValue] = useState<string>(" ")
     const onRadioChange = (newRadioValue: string) => setRadioValue(newRadioValue)
+
+
     return (
         <HashRouter>
             <Menu/>
             <div className="App">
                 <Switch>
                     <Route path="/preJunior/" render={() => (<>
-                        <h1>Task 1</h1>
+                        <h2>Task 1</h2>
                         <MessageList/>
-                        <h1>Task 2</h1>
+                        <h2>Task 2</h2>
                         <TaskList/>
-                        <h1>Task 3</h1>
+                        <h2>Task 3</h2>
                         <Input/>
-                        <h1>Task 4</h1>
+                        <h2>Task 4</h2>
                         <MyInput error={false} value={value} onChange={onChange} placeholder={"Name"}
                                  onEnterPress={onEnterPress}/>
                         <MyCheckbox onClick={onChangeCheckbox} checked={checked} text={"Custom checkbox"}/>
                         <MyButton disabled={false} text={"Send"} onClick={onClick}/>
                     </>)}/>
-                    <Route path="/Junior/" render={() => (<>
-                        <h1>Task 6</h1>
-                        <EditableSpan onChange={setSpanValue} value={value}/>
-                        <div style={{display: "flex"}}>
-                            <MyButton onClick={() => saveState<string>("spanValue", value)} text={"Save state"}/>
-                            <MyButton onClick={() => {
-                                setValue(restoreState<string>("spanValue", value))
-                            }} text={"Restore state"}/>
-                        </div>
-                        <h1>Task 7</h1>
-                        <div><Select options={options} size={1} value={selected} onChange={onChangeSelect}/></div>
-                        <Radio name={"Health"} radio={radioState} onChange={onRadioChange}/>
-                        Current radio value:<b>{radioValue}</b>
-                        <h1>Task 8</h1>
-                       <ReducersTask/>
-                    </>)}/>
+                  <Route path="/Junior/" render={() => (<>
+                            <h2>Task 6</h2>
+                            <EditableSpan onChange={setSpanValue} value={value}/>
+                            <div style={{display: "flex"}}>
+                                <MyButton onClick={() => saveState<string>("spanValue", value)} text={"Save state"}/>
+                                <MyButton onClick={() => {
+                                    setValue(restoreState<string>("spanValue", value))
+                                }} text={"Restore state"}/>
+                            </div>
+                            <h2>Task 7</h2>
+                            <div><Select options={options} size={1} value={selected} onChange={onChangeSelect}/></div>
+                            <Radio name={"Health"} radio={radioState} onChange={onRadioChange}/>
+                            Current radio value:<b>{radioValue}</b>
+                            <h2>Task 8</h2>
+                            <ReducersTask/>
+                            <h2>Task 9</h2>
+                            <DateTask/>
+                        </>)}/>
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
-
                 </Switch>
             </div>
         </HashRouter>
