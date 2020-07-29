@@ -13,8 +13,9 @@ import {Select} from "./common/Select";
 import {Radio} from "./common/Radio";
 import {ReducersTask} from "./ReducersTask";
 import {DateTask} from "./DateTask";
-
-
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {Preloader} from "./common/Preloader";
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
@@ -39,6 +40,7 @@ function App() {
         if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
         return defaultState;
     }
+
     const options = ["1 year", "4 year", "12 year", "15 year", "16 year", "20 year"]
     let [selected, setSelected] = useState<string>("Select please...")
     const onChangeSelect = (selectedValue: string) => setSelected(selectedValue)
@@ -48,6 +50,15 @@ function App() {
     const onRadioChange = (newRadioValue: string) => setRadioValue(newRadioValue)
 
 
+    let loading = useSelector<AppRootStateType, boolean>(state => state.juniorPage.loading)
+    let dispatch = useDispatch()
+    const setLoading = () => {
+        dispatch({type: "SET_LOADING", loading: true})
+        setTimeout(() => dispatch({type: "SET_LOADING", loading: false}), 3000)
+    }
+
+    let [rangeValue, setRangeValue] = useState<number>(0)
+    const onRangeChange = (value:number)=>setRangeValue(value)
     return (
         <HashRouter>
             <Menu/>
@@ -66,7 +77,7 @@ function App() {
                         <MyCheckbox onClick={onChangeCheckbox} checked={checked} text={"Custom checkbox"}/>
                         <MyButton disabled={false} text={"Send"} onClick={onClick}/>
                     </>)}/>
-                  <Route path="/Junior/" render={() => (<>
+                    {!loading ? <Route path="/Junior/" render={() => (<>
                             <h2>Task 6</h2>
                             <EditableSpan onChange={setSpanValue} value={value}/>
                             <div style={{display: "flex"}}>
@@ -83,7 +94,10 @@ function App() {
                             <ReducersTask/>
                             <h2>Task 9</h2>
                             <DateTask/>
-                        </>)}/>
+                            <h2>Task 10</h2>
+                            <MyButton onClick={setLoading} text={"Start loading..."}/>
+                        </>)}/> :
+                        <Preloader/>}
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
                 </Switch>
             </div>
