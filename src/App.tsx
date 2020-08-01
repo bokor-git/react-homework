@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {Preloader} from "./common/Preloader";
 import {Range} from "./common/Range";
+import {JuniorPage} from "./JuniorPage";
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
@@ -59,13 +60,16 @@ function App() {
     }
 
     let [rangeValue, setRangeValue] = useState<number>(0)
-    const onRangeChange = useCallback((value:number)=>setRangeValue(value),[setRangeValue])
+    const onRangeChange = useCallback((value: number) => setRangeValue(value), [setRangeValue])
+
+
+    const darkMode = useSelector<AppRootStateType, boolean>(state => state.pageMode.darkMode)
     return (
         <HashRouter>
-            <Menu/>
-            <div className="App">
+            <div className={darkMode ? "App dark-mode" : "App"}>
                 <Switch>
                     <Route path="/preJunior/" render={() => (<>
+                        <Menu/>
                         <h2>Task 1</h2>
                         <MessageList/>
                         <h2>Task 2</h2>
@@ -79,6 +83,7 @@ function App() {
                         <MyButton disabled={false} text={"Send"} onClick={onClick}/>
                     </>)}/>
                     {!loading ? <Route path="/Junior/" render={() => (<>
+                            <Menu/>
                             <h2>Task 6</h2>
                             <EditableSpan onChange={setSpanValue} value={value}/>
                             <div style={{display: "flex"}}>
@@ -98,10 +103,11 @@ function App() {
                             <h2>Task 10</h2>
                             <MyButton onClick={setLoading} text={"Start loading..."}/>
                             <h2>Task 11</h2>
-                            <Range rangeValue={rangeValue} onChange={onRangeChange} text={"Value"} step={1} maxValue={50} minValue={0}/>
+                            <Range rangeValue={rangeValue} onChange={onRangeChange} text={"Value"} step={1} maxValue={50}
+                                   minValue={0}/>
                         </>)}/> :
                         <Preloader/>}
-                    <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
+                    <Route path="/Junior+/" render={() => (<JuniorPage/>)}/>
                 </Switch>
             </div>
         </HashRouter>
@@ -110,3 +116,5 @@ function App() {
 
 
 export default App;
+
+

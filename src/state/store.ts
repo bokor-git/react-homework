@@ -1,10 +1,12 @@
 import {juniorPageReducer} from "../reduxTaskReducer"
 import {combineReducers, createStore} from 'redux';
+import {pageModeReducer} from "../pageModeReducer";
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
     juniorPage: juniorPageReducer,
+    pageMode: pageModeReducer
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer);

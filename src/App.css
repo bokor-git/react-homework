@@ -75,3 +75,9 @@ ul li:hover ul li {
     padding: 5px 25px; /* Поля */
     border: 1px solid #333; /* Параметры рамки */
 }
+
+.dark-mode {
+    background-color: dimgray;
+    min-height: 100vh;
+    color: #dedede;
+}

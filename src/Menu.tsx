@@ -2,7 +2,7 @@ import {NavLink} from "react-router-dom";
 import React from "react";
 
 export const Menu = () => {
-    return <ul>
+    return <ul style={{position:"absolute", left:"250px"}}>
         <li><a>Menu</a>
 
             <ul>
