@@ -72,7 +72,6 @@ ul li:hover ul li {
     color: #fff; /* Цвет текста */
     text-align: center; /* Выравнивание текста по центру */
     font-family: Arial, sans-serif; /* Гарнитура шрифта */
-    padding: 5px 20px; /* Поля */
-    margin: 5px;
+    padding: 5px 25px; /* Поля */
     border: 1px solid #333; /* Параметры рамки */
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import './App.css';
 import {MessageList} from "./Messenger";
 import {TaskList} from "./TaskList";
@@ -16,6 +16,7 @@ import {DateTask} from "./DateTask";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {Preloader} from "./common/Preloader";
+import {Range} from "./common/Range";
 
 function App() {
     let [value, setValue] = useState<string>("Editable span example")
@@ -58,7 +59,7 @@ function App() {
     }
 
     let [rangeValue, setRangeValue] = useState<number>(0)
-    const onRangeChange = (value:number)=>setRangeValue(value)
+    const onRangeChange = useCallback((value:number)=>setRangeValue(value),[setRangeValue])
     return (
         <HashRouter>
             <Menu/>
@@ -96,6 +97,8 @@ function App() {
                             <DateTask/>
                             <h2>Task 10</h2>
                             <MyButton onClick={setLoading} text={"Start loading..."}/>
+                            <h2>Task 11</h2>
+                            <Range rangeValue={rangeValue} onChange={onRangeChange} text={"Value"} step={1} maxValue={50} minValue={0}/>
                         </>)}/> :
                         <Preloader/>}
                     <Route path="/Junior+/" render={() => (<h1>Will be soon...</h1>)}/>
