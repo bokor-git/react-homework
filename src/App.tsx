@@ -68,6 +68,7 @@ function App() {
         <HashRouter>
             <div className={darkMode ? "App dark-mode" : "App"}>
                 <Switch>
+                    <Route exact path={"/"} render={() => (<JuniorPage/>)}/>
                     <Route path="/preJunior/" render={() => (<>
                         <Menu/>
                         <h2>Task 1</h2>

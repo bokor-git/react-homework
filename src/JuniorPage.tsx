@@ -21,7 +21,7 @@ export function JuniorPage() {
         <h2>Task 12</h2>
         <h4>Please select mode:</h4>
         <Radio radio={siteMode} onChange={onSiteModeChange} name={"Set Dark Mode"}/>
-        <h2>Task 12</h2>
+        <h2>Task 13</h2>
         <Request/>
     </>
 
