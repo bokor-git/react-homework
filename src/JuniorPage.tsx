@@ -3,6 +3,7 @@ import {changeSiteModeAC} from "./pageModeReducer";
 import {Menu} from "./Menu";
 import {Radio} from "./common/Radio";
 import React from "react";
+import {Request} from "./Request";
 
 export function JuniorPage() {
     const dispatch = useDispatch()
@@ -20,6 +21,8 @@ export function JuniorPage() {
         <h2>Task 12</h2>
         <h4>Please select mode:</h4>
         <Radio radio={siteMode} onChange={onSiteModeChange} name={"Set Dark Mode"}/>
+        <h2>Task 12</h2>
+        <Request/>
     </>
 
 }
