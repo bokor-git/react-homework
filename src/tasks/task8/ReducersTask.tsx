@@ -1,7 +1,7 @@
 import {useReducer} from "react";
 import {hwReducer} from "./homeWorkReducer";
 import React from "react";
-import {MyButton} from "./common/MyButton";
+import {Button} from "../../common/Button/Button";
 
 
 export function ReducersTask() {
@@ -18,9 +18,9 @@ export function ReducersTask() {
     )
     return <div>{people.map(p => <div key={p.id}>Name: <b>{p.name}</b> Age: <b>{p.age}</b></div>)}
         <div style={{display: "flex"}}>
-            <MyButton text={"Sort A-Z"} onClick={() => dispatchPeople({type: 'SORT', payload: 'up'})}/>
-            <MyButton text={"Sort Z-A"} onClick={() => dispatchPeople({type: 'SORT', payload: 'down'})}/>
-            <MyButton text={"Check age"} onClick={() => dispatchPeople({type: 'CHECK', payload: 18})}/>
+            <Button text={"Sort A-Z"} onClick={() => dispatchPeople({type: 'SORT', payload: 'up'})}/>
+            <Button text={"Sort Z-A"} onClick={() => dispatchPeople({type: 'SORT', payload: 'down'})}/>
+            <Button text={"Check age"} onClick={() => dispatchPeople({type: 'CHECK', payload: 18})}/>
         </div>
     </div>
 }

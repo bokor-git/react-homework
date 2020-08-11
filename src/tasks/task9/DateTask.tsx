@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import moment from "moment";
-import {MyButton} from "./common/MyButton";
-import "./App.css"
+import {Button} from "../../common/Button/Button";
+import "../../App.css"
 
 export function DateTask() {
     let [date, setDate] = useState(moment().format('h:mm:ss a'));
@@ -16,8 +16,8 @@ export function DateTask() {
     return <div>
         <div className="date" data-title={moment().format('MMMM Do YYYY')}>{date}</div>
         <div style={{display: "flex", justifyContent: "center"}}>
-            <MyButton text={"Start"} onClick={onClick}/>
-            <MyButton text={"Stop"} onClick={() => clearInterval(timerId)}/>
+            <Button text={"Start"} onClick={onClick}/>
+            <Button text={"Stop"} onClick={() => clearInterval(timerId)}/>
         </div>
     </div>
 }

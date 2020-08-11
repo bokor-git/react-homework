@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import style from "./Messenger.module.css"
+import style from "../task1/Messenger.module.css"
+import {Button} from "../../common/Button/Button";
 
 type TaskType = { id: number, n: string, p: string }
 
@@ -35,10 +36,12 @@ export function TaskList() {
 
     return <div>
         {filteredTasks?.map((t) => <TaskItem deleteTask={deleteTask} task={t}/>)}
-        <button onClick={() => hightPriorityTask()}>hight</button>
-        <button onClick={() => middlePriorityTask()}>middle</button>
-        <button onClick={() => lowPriorityTask()}>low</button>
-        <button onClick={() => allTask()}>all</button>
+        <div style={{display:"flex"}}>
+            <Button onClick={hightPriorityTask} text={"hight"}/>
+            <Button onClick={middlePriorityTask} text={"middle"}/>
+            <Button onClick={lowPriorityTask} text={"low"}/>
+            <Button onClick={allTask} text={"all"}/></div>
+
     </div>
 }
 

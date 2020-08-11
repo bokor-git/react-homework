@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {requestAPI} from "./homework-api";
-import {MyCheckbox} from "./common/MyCheckbox";
-import {MyButton} from "./common/MyButton";
+import {Checkbox} from "../../common/Checkbox/Checkbox";
+import {Button} from "../../common/Button/Button";
 
 
 export function Request() {
@@ -14,8 +14,8 @@ export function Request() {
             .catch(err => setResponse(err.response.data.info))
     }
     return <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-        <MyCheckbox text={"Payload true/false"} checked={success} onClick={(value) => setSuccess(value)}/>
-        <MyButton onClick={sendRequest} text={"Send Request"}/>
+        <Checkbox text={"Payload true/false"} checked={success} onClick={(value) => setSuccess(value)}/>
+        <Button onClick={sendRequest} text={"Send Request"}/>
         <div><b>Response:</b></div>
         <div>{response}</div>
     </div>

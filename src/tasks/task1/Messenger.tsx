@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import style from "./Messenger.module.css"
+import {Button} from "../../common/Button/Button";
+import {Input} from "../../common/Input/Input";
+import moment from "moment";
 
 
 export function MessageList() {
@@ -12,25 +15,7 @@ export function MessageList() {
             name: "Artem"
         },
         {
-            title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam architecto",
-            date: "12.06.2020",
-            photo: "https://randomuser.me/api/portraits/men/71.jpg",
-            name: "Artem"
-        },
-        {
-            title: "consectetur cupiditate",
-            date: "12.06.2020",
-            photo: "https://randomuser.me/api/portraits/men/71.jpg",
-            name: "Artem"
-        },
-        {
-            title: "Lorem ipsum dolor sit amet",
-            date: "12.06.2020",
-            photo: "https://randomuser.me/api/portraits/men/71.jpg",
-            name: "Artem"
-        },
-        {
-            title: "Hello again",
+            title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
             date: "12.06.2020",
             photo: "https://randomuser.me/api/portraits/men/71.jpg",
             name: "Artem"
@@ -41,38 +26,24 @@ export function MessageList() {
     let [message, setMessage] = useState<Array<MessageType>>(initState)
     let [newMessageTitle, setNewMessageTitle] = useState<string>("")
 
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yyyy = today.getFullYear();
-    let date = dd + '.' + mm + '.' + yyyy;
-
     const addNewMassage = () => {
         let newMessage = {
             title: newMessageTitle,
-            date: date,
+            date: moment().format('h:mm:ss a'),
             photo: "https://randomuser.me/api/portraits/men/71.jpg",
             name: "Artem"
         }
-        const newMessages = [...message, newMessage]
-        setMessage(newMessages)
+        setMessage([...message, newMessage])
         setNewMessageTitle("")
-    }
-
-    const onEnterPress = (e: any) => {
-        if (e.charCode === 13) {
-            addNewMassage()
-        }
     }
 
     return <div className={style.message_list}>
         {message.map((m) => <MassageItem message={m}/>)}
         <div className={style.new_message}>
-            <input onChange={e => setNewMessageTitle(e.currentTarget.value)} onKeyPress={onEnterPress} type="text"
+            <Input onChange={setNewMessageTitle} onEnterPress={addNewMassage} error={false}
                    value={newMessageTitle}
                    placeholder="Enter your message"/>
-
-            <button className={style.send_button} onClick={addNewMassage}>SEND</button>
+            <Button text={"Send"} disabled={false}  onClick={addNewMassage}/>
         </div>
     </div>
 }

@@ -1,6 +1,6 @@
-import {juniorPageReducer} from "../reduxTaskReducer"
+import {juniorPageReducer} from "../tasks/task10/reduxTaskReducer"
 import {combineReducers, createStore} from 'redux';
-import {pageModeReducer} from "../pageModeReducer";
+import {pageModeReducer} from "../tasks/task12/pageModeReducer";
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния

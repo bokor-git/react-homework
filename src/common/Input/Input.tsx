@@ -10,7 +10,7 @@ type MyInputType = {
     onBlur?: ()=>void
 }
 
-export function MyInput({onChange,onEnterPress, value, error, placeholder, onBlur}: MyInputType) {
+export function Input({onChange,onEnterPress, value, error, placeholder, onBlur}: MyInputType) {
     const enterEvent = (e: any) => {
         if (e.charCode === 13&&onEnterPress) {
             onEnterPress((e.currentTarget.value))

@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {v1} from 'uuid';
+import {Button} from "../../common/Button/Button";
+import {Input} from "../../common/Input/Input";
 
 type namesType = { id: string, name: string }
 
-export function Input() {
+export function InputTask() {
     let initState: Array<namesType> = [
         {id: v1(), name: "Bohdan"},
         {id: v1(), name: "Roman"},
@@ -17,16 +19,12 @@ export function Input() {
             setNewMessageTitle("")
         }
     }
-    const onEnterPress = (e: any) => {
-        if (e.charCode === 13) {
-            addNewMassage()
-        }
-    }
+    const onChange = (value: string) => setNewMessageTitle(value)
     return <div className="group">
-        <input onChange={e => setNewMessageTitle(e.currentTarget.value)} onKeyPress={onEnterPress} type="text"
-               value={newMessageTitle}
-               placeholder="Enter your name"/>
-        <button onClick={addNewMassage}>SEND</button>
+        <Input error={false} onChange={onChange} onEnterPress={addNewMassage}
+                   value={newMessageTitle}
+                   placeholder="Enter your name"/>
+        <Button onClick={addNewMassage} text={"SEND"}/>
         {names.map(n => <div key={n.id}>{n.name}</div>)}
     </div>
 }
