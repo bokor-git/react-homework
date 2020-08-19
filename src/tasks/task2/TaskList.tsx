@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import style from "../task1/Messenger.module.css"
 import {Button} from "../../common/Button/Button";
 
 type TaskType = { id: number, n: string, p: string }
